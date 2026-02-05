@@ -2,8 +2,7 @@ import { useTodoStore } from '../store/useTodoStore';
 import { TodoItem } from './TodoItem';
 
 export function TodoList() {
-  const getFilteredTodos = useTodoStore((s) => s.getFilteredTodos);
-  const todos = getFilteredTodos();
+  const todos = useTodoStore((s) => s.getFilteredTodos());
 
   if (todos.length === 0) {
     return (
