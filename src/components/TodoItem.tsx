@@ -21,7 +21,10 @@ export function TodoItem({ todo }: TodoItemProps) {
           id={checkboxId}
           type="checkbox"
           checked={todo.completed}
-          onChange={() => toggleTodo(todo.id)}
+          onChange={(e) => {
+            e.stopPropagation();
+            toggleTodo(todo.id);
+          }}
           className="todo-checkbox"
           aria-label={todo.completed ? `Marcar "${todo.title}" como pendente` : `Marcar "${todo.title}" como concluída`}
         />
@@ -34,7 +37,11 @@ export function TodoItem({ todo }: TodoItemProps) {
         <button
           type="button"
           className="todo-remove"
-          onClick={() => removeTodo(todo.id)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            removeTodo(todo.id);
+          }}
           aria-label={`Remover tarefa "${todo.title}"`}
         >
           Remover

@@ -2,9 +2,16 @@ import { useTodoStore } from '../store/useTodoStore';
 import { TodoItem } from './TodoItem';
 
 export function TodoList() {
-  const todos = useTodoStore((s) => s.getFilteredTodos());
+  const todos = useTodoStore((s) => s.todos);
+  const filter = useTodoStore((s) => s.filter);
+  
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
+    return true;
+  });
 
-  if (todos.length === 0) {
+  if (filteredTodos.length === 0) {
     return (
       <p className="todo-empty" role="status" aria-live="polite">
         Nenhuma tarefa para exibir.
@@ -18,7 +25,7 @@ export function TodoList() {
       role="list"
       aria-label="Lista de tarefas"
     >
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
     </ul>

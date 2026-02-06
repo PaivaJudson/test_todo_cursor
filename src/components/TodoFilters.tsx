@@ -22,7 +22,11 @@ export function TodoFilters() {
           key={value}
           type="button"
           className={`todo-filter ${filter === value ? 'todo-filter--active' : ''}`}
-          onClick={() => setFilter(value)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setFilter(value);
+          }}
           aria-pressed={filter === value}
           aria-label={`Mostrar tarefas: ${label}`}
         >
