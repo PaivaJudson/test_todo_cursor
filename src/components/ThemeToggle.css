@@ -1,0 +1,32 @@
+.theme-toggle {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.theme-option {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.theme-option:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+}
+
+.theme-option--active {
+  background: var(--primary);
+  color: var(--primary-text);
+  border-color: var(--primary);
+}
+
+.theme-option:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
