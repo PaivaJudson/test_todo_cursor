@@ -29,7 +29,7 @@ type ThemeState = {
   setMode: (mode: ThemeMode) => void;
 };
 
-export const useThemeStore = create<ThemeState>((set, get) => ({
+export const useThemeStore = create<ThemeState>((set) => ({
   mode: getStoredTheme(),
 
   setMode: (mode: ThemeMode) => {
