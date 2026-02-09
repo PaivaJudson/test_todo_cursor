@@ -69,20 +69,33 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 280px;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   background: var(--bg);
   color: var(--text);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 #root {
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
+}
+
+@media (min-width: 480px) {
+  #root {
+    padding: 1rem 0;
+  }
 }
 
 /* Foco visível para teclado (acessibilidade) */
