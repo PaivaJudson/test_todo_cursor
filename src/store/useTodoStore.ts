@@ -1,13 +1,15 @@
 import { create } from 'zustand';
-import type { Todo, FilterType } from '../types/todo';
+import type { Todo, FilterType, FolderType } from '../types/todo';
 
 type TodoState = {
   todos: Todo[];
   filter: FilterType;
-  addTodo: (title: string) => void;
+  currentFolder: FolderType;
+  addTodo: (title: string, folder?: FolderType, dueDate?: string | null) => void;
   toggleTodo: (id: string) => void;
   removeTodo: (id: string) => void;
   setFilter: (filter: FilterType) => void;
+  setCurrentFolder: (folder: FolderType) => void;
   getFilteredTodos: () => Todo[];
 };
 
@@ -16,10 +18,13 @@ const generateId = () => crypto.randomUUID();
 export const useTodoStore = create<TodoState>((set, get) => ({
   todos: [],
   filter: 'all',
+  currentFolder: 'all',
 
-  addTodo: (title: string) => {
+  addTodo: (title: string, folder?: FolderType, dueDate?: string | null) => {
     const trimmed = title.trim();
     if (!trimmed) return;
+    const { currentFolder } = get();
+    const taskFolder = folder ?? (currentFolder === 'all' ? 'general' : currentFolder);
     set((state) => ({
       todos: [
         ...state.todos,
@@ -28,9 +33,15 @@ export const useTodoStore = create<TodoState>((set, get) => ({
           title: trimmed,
           completed: false,
           createdAt: Date.now(),
+          folder: taskFolder,
+          dueDate: dueDate ?? null,
         },
       ],
     }));
+  },
+
+  setCurrentFolder: (folder: FolderType) => {
+    set({ currentFolder: folder });
   },
 
   toggleTodo: (id: string) => {
