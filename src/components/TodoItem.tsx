@@ -4,6 +4,7 @@ import { useTodoStore } from '../store/useTodoStore';
 
 type TodoItemProps = {
   todo: Todo;
+  highlight?: boolean;
 };
 
 function formatDueDate(isoDate: string | null | undefined): string {
@@ -19,7 +20,7 @@ function formatDueDate(isoDate: string | null | undefined): string {
   }
 }
 
-export function TodoItem({ todo }: TodoItemProps) {
+export function TodoItem({ todo, highlight }: TodoItemProps) {
   const toggleTodo = useTodoStore((s) => s.toggleTodo);
   const removeTodo = useTodoStore((s) => s.removeTodo);
   const updateTodo = useTodoStore((s) => s.updateTodo);
@@ -29,10 +30,10 @@ export function TodoItem({ todo }: TodoItemProps) {
 
   return (
     <li
-      className={`todo-item ${todo.completed ? 'todo-item--completed' : ''}`}
+      className={`todo-item ${todo.completed ? 'todo-item--completed' : ''} ${highlight ? 'todo-item--highlight' : ''}`}
       data-id={todo.id}
     >
-      <div className="todo-item-content">
+      <div className="todo-item-content todo-item-grid">
         <input
           id={checkboxId}
           type="checkbox"

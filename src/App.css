@@ -278,6 +278,64 @@
 }
 
 /* Lista de tarefas */
+.todo-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo-list-header {
+  display: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 640px) {
+  .todo-list-header {
+    display: grid;
+    grid-template-columns: auto 1fr minmax(80px, 100px) minmax(70px, 90px) minmax(100px, 110px) auto;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .todo-col-task {
+    grid-column: 2;
+  }
+
+  .todo-col-folder {
+    grid-column: 3;
+  }
+
+  .todo-col-due {
+    grid-column: 4 / 6;
+  }
+}
+
+.todo-col-task {
+  min-width: 0;
+}
+
+.todo-col-folder,
+.todo-col-due {
+  flex-shrink: 0;
+}
+
+.todo-list-divider {
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
 .todo-list {
   list-style: none;
   margin: 0;
@@ -285,6 +343,16 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+}
+
+.todo-item--highlight {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+[data-theme='dark'] .todo-item--highlight {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
 }
 
 .todo-empty {
@@ -324,6 +392,14 @@
 @media (min-width: 480px) {
   .todo-item-content {
     padding: 0.6rem 0.75rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .todo-item-grid {
+    display: grid;
+    grid-template-columns: auto 1fr minmax(80px, 100px) minmax(70px, 90px) minmax(100px, 110px) auto;
+    gap: 0.75rem;
   }
 }
 
