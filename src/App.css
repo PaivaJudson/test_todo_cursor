@@ -146,6 +146,22 @@
   }
 }
 
+.todo-input-date {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
+  min-width: 130px;
+}
+
+.todo-input-date:focus {
+  outline: none;
+  border-color: var(--focus);
+}
+
 .todo-input::placeholder {
   color: var(--text-muted);
 }
@@ -340,6 +356,49 @@
   line-height: 1.4;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+.todo-folder {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  min-width: 80px;
+}
+
+.todo-due {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  min-width: 70px;
+}
+
+.todo-due-edit {
+  flex-shrink: 0;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--input-bg);
+  color: var(--text);
+  min-width: 100px;
+}
+
+.todo-due-edit:focus {
+  outline: none;
+  border-color: var(--focus);
+}
+
+@media (max-width: 639px) {
+  .todo-folder,
+  .todo-due-edit {
+    display: none;
+  }
+
+  .todo-due {
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
 }
 
 .todo-remove {

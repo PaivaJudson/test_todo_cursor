@@ -6,6 +6,7 @@ type TodoState = {
   filter: FilterType;
   currentFolder: FolderType;
   addTodo: (title: string, folder?: FolderType, dueDate?: string | null) => void;
+  updateTodo: (id: string, updates: Partial<Pick<Todo, 'dueDate' | 'folder'>>) => void;
   toggleTodo: (id: string) => void;
   removeTodo: (id: string) => void;
   setFilter: (filter: FilterType) => void;
@@ -42,6 +43,14 @@ export const useTodoStore = create<TodoState>((set, get) => ({
 
   setCurrentFolder: (folder: FolderType) => {
     set({ currentFolder: folder });
+  },
+
+  updateTodo: (id: string, updates: Partial<Pick<Todo, 'dueDate' | 'folder'>>) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === id ? { ...todo, ...updates } : todo
+      ),
+    }));
   },
 
   toggleTodo: (id: string) => {

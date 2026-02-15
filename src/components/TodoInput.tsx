@@ -3,17 +3,19 @@ import { useTodoStore } from '../store/useTodoStore';
 
 export function TodoInput() {
   const [value, setValue] = useState('');
+  const [dueDate, setDueDate] = useState<string>('');
   const addTodo = useTodoStore((s) => s.addTodo);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      addTodo(value);
+      addTodo(value, undefined, dueDate || null);
       setValue('');
+      setDueDate('');
       inputRef.current?.focus();
     },
-    [value, addTodo]
+    [value, dueDate, addTodo]
   );
 
   return (
@@ -37,6 +39,17 @@ export function TodoInput() {
         autoComplete="off"
         aria-describedby="new-todo-hint"
         maxLength={280}
+      />
+      <label htmlFor="new-todo-date" className="visually-hidden">
+        Data de vencimento
+      </label>
+      <input
+        id="new-todo-date"
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+        className="todo-input-date"
+        aria-label="Data de vencimento (opcional)"
       />
       <span id="new-todo-hint" className="visually-hidden">
         Digite e pressione Enter para adicionar
