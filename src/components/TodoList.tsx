@@ -4,8 +4,12 @@ import { TodoItem } from './TodoItem';
 export function TodoList() {
   const todos = useTodoStore((s) => s.todos);
   const filter = useTodoStore((s) => s.filter);
-  
+  const currentFolder = useTodoStore((s) => s.currentFolder);
+
   const filteredTodos = todos.filter((todo) => {
+    const folderMatch =
+      currentFolder === 'all' || (todo.folder ?? 'general') === currentFolder;
+    if (!folderMatch) return false;
     if (filter === 'active') return !todo.completed;
     if (filter === 'completed') return todo.completed;
     return true;

@@ -11,8 +11,8 @@ export type Todo = {
   title: string;
   completed: boolean;
   createdAt: number;
-  folder: FolderType;
-  dueDate: string | null;
+  folder?: FolderType;
+  dueDate?: string | null;
 };
 
 export type FilterType = 'all' | 'active' | 'completed';

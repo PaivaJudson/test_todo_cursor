@@ -1,0 +1,69 @@
+.folder-sidebar {
+  width: 100%;
+  max-width: 220px;
+  padding: 0.75rem;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.folder-sidebar-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.folder-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.folder-item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-size: 0.9rem;
+  background: transparent;
+  color: var(--text);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.folder-item:hover {
+  background: var(--surface-hover);
+}
+
+.folder-item--active {
+  background: var(--primary);
+  color: var(--primary-text);
+}
+
+.folder-item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+@media (max-width: 767px) {
+  .folder-sidebar {
+    max-width: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .folder-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .folder-item {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+}
