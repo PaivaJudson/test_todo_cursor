@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
+import { Navbar } from './components/Navbar';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
 import { TodoFilters } from './components/TodoFilters';
 import { TodoStats } from './components/TodoStats';
-import { ThemeToggle } from './components/ThemeToggle';
 import { FolderSidebar } from './components/FolderSidebar';
 import { Footer } from './components/Footer';
 import { useThemeStore } from './store/useThemeStore';
@@ -32,22 +32,7 @@ function App() {
 
   return (
     <div className="app-layout" id="main-content">
-      <header className="app-header">
-        <div className="app-header-left">
-          <h1 id="app-title">Lista de Tarefas</h1>
-        </div>
-        <button
-          type="button"
-          className="app-add-task"
-          aria-label="Adicionar tarefa"
-          onClick={() => document.getElementById('new-todo')?.focus()}
-        >
-          + ADICIONAR TAREFA
-        </button>
-        <div className="app-header-right">
-          <ThemeToggle />
-        </div>
-      </header>
+      <Navbar />
 
       <div className="app-body">
         <FolderSidebar />
