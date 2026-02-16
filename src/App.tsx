@@ -5,6 +5,7 @@ import { TodoFilters } from './components/TodoFilters';
 import { TodoStats } from './components/TodoStats';
 import { ThemeToggle } from './components/ThemeToggle';
 import { FolderSidebar } from './components/FolderSidebar';
+import { Footer } from './components/Footer';
 import { useThemeStore } from './store/useThemeStore';
 import { useTodoStore } from './store/useTodoStore';
 import { FOLDERS } from './types/todo';
@@ -62,6 +63,7 @@ function App() {
           </section>
         </main>
       </div>
+      <Footer />
     </div>
   );
 }
